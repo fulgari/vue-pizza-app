@@ -31,13 +31,22 @@
                   <span class="now">{{food.price}}€</span>
                   <span class="old" v-show="food.oldPrice">{{food.oldPrice}}€</span>
                 </div>
+                <div class="cartcontrol-wrapper">
+                  <cartcontrol :food="food" :update-food-count="updateFoodCount"></cartcontrol>
+                </div>
               </div>
             </li>
           </ul>
         </li>
       </ul>
     </div>
-    <shopcart :delivery-price="seller.deliveryPrice" :min-price="seller.minPrice"></shopcart>
+    <shopcart
+    :food-list="foodList"
+    :delivery-price="seller.deliveryPrice"
+    :min-price="seller.minPrice"
+    :update-food-count="updateFoodCount"
+    :clear-cart="clearCart"
+    ></shopcart>
   </div>
 </template>
 
@@ -46,6 +55,7 @@ import axios from 'axios';
 import BScroll from 'better-scroll';
 import Vue from 'vue';
 import shopcart from '../shopcart/shopcart';
+import cartcontrol from '../cartcontrol/cartcontrol';
 
 const OK = 0;
 
@@ -59,7 +69,8 @@ export default {
     return {
       goods: [],
       tops: [],
-      scrollY: 0
+      scrollY: 0,
+      selectFood: {}
     };
   },
   created() {
@@ -117,10 +128,40 @@ export default {
       if (!event._constructed) { // _constructed是better-scroll库添加的
         return
       }
-      console.log(index, event) // 当前点击菜单的index和鼠标点击的事件。
+      // console.log(index, event) // 当前点击菜单的index和鼠标点击的事件。
       // 将右铡的列表滚动到对应的位置（第index个food-list-hook处）
       var li = this.$refs.foodsWrapper.getElementsByClassName('food-list-hook')[index]
       this.foodsScroll.scrollToElement(li, 300)
+    },
+    updateFoodCount (food, isAdd, event) {
+      // filter original DOM
+      if (!event._constructed) {
+        return
+      }
+      if (isAdd) { // add
+        if (!food.count) {
+          console.log('updateFoodCount() first time') // first
+          // 新增count属性
+          // food.count = 1  // 没有监视-->没有数据绑定, 界面不会更新
+          // add a count attribute
+          // food.count = 1 // NO-NO, coz there's no listener, so no data binding, the DOM won't refresh
+          Vue.set(food, 'count', 1) // recommended, use Vue to do so
+        } else {
+          food.count++
+        }
+        // 通知shopcart组件对象启动一个小球的显示动画
+        // notify the 'shopcart' to run the little ball animation
+        // this.$refs.shopcart.drop(event.target)
+      } else { // minus
+        if (food.count) {
+          food.count--;
+        }
+      }
+    },
+    clearCart () {
+      this.foodList.forEach(food => {
+        food.count = 0
+      })
     }
   },
   computed: { // ‘计算’属性
@@ -130,10 +171,22 @@ export default {
       return tops.findIndex((top, index) => {
         return scrollY >= top && scrollY < tops[index + 1]
       })
+    },
+    foodList () { // 返回所有count>0的food的数组
+      const foods = []
+      this.goods.forEach(good => {
+        good.foods.forEach(food => {
+          if (food.count) {
+            foods.push(food)
+          }
+        })
+      })
+      return foods
     }
   },
   components: {
-    shopcart
+    shopcart,
+    cartcontrol
   }
 };
 </script>
@@ -240,4 +293,8 @@ export default {
             text-decoration line-through
             font-size 10px
             color rgb(147,153,159)
+        .cartcontrol-wrapper
+          position absolute
+          right 0
+          bottom 12px
 </style>
