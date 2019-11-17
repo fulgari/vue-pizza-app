@@ -1,6 +1,6 @@
-# sell
+# Vue pizza app
 
-> sell app
+> app for ordering pizzas, checking the comments
 
 ## Build Setup
 
