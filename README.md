@@ -2,6 +2,8 @@
 
 > app for ordering pizzas, checking the comments
 
+click [here](https://swanf.github.io/vue-pizza-app/dist/) to go 
+
 ## Build Setup
 
 ``` bash
