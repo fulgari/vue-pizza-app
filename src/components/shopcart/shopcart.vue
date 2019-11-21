@@ -1,7 +1,7 @@
 <template>
   <div class="shopcart">
     <div class="content">
-      <div class="content-left">
+      <div class="content-left" @click="toggleList">
         <div class="logo-wrapper">
           <div class="logo" :class="{'highlight': totalCount>0}">
             <i class="icon-shopping_cart" :class="{'highlight': totalCount>0}"></i>
@@ -13,12 +13,25 @@
       </div>
       <div class="content-right">
         <!-- :class="totalPrice>=minPrice?'enough':'not-enough'" , 换种表达-->
-        <div class="pay" :class="{'enough':totalPrice>=minPrice,'not-enough':totalPrice<minPrice}">{{payText}}</div>
+        <div class="pay" :class="{'enough':totalPrice>=minPrice,'not-enough':totalPrice<minPrice}" @click="pay">{{payText}}</div>
+      </div>
+    </div>
+
+    <div class="ball-container">
+      <div class="ball" v-for="ball in balls" :key="ball.index" v-show="ball.show" transition="drop">
+      <!-- <transition name="drop" v-for="(ball, index) in balls" :key="index"
+        @before-enter="beforeDrop"
+        @enter="dropping"
+        @after-enter="afterDrop"
+        v-bind:css="false"> -->
+        <div class="ball" v-show="ball.show">
+          <div class="inner inner-hook"></div>
+        </div>
       </div>
     </div>
 
     <transition name="fold">
-      <div class="shopcart-list" v-show="listShow">
+      <div class="shopcart-list">
         <div class="list-header">
           <h1 class="title">Cart</h1>
           <span class="empty" @click="clearCart">Clear</span>
@@ -57,12 +70,12 @@ export default{
   data() {
     return {
       isShow: false,
-      balls: [
-        {isShow: false},
-        {isShow: false},
-        {isShow: false},
-        {isShow: false},
-        {isShow: false}
+      balls: [ // 显示动画的小球一共有五个帧
+        {show: false},
+        {show: false},
+        {show: false},
+        {show: false},
+        {show: false}
       ],
       droppingBalls: [] // balls for the animation // 保存多个执行动画的ball
     }
@@ -97,10 +110,11 @@ export default{
       } else {
         return 'Check out'
       }
-    },
+    }
+    /* 'ele' not working
     listShow () {
-      /*
       if (this.totalCount === 0) { // decrease to zero, no balls
+        // eslint-disable-next-line
         this.isShow = false;
         return false
       }
@@ -109,6 +123,7 @@ export default{
       if (this.isShow) {
         Vue.nextTick(() => {
           if (!this.scroll) { // already have scroll? if not, the create one // 保存，只创建一次
+            // eslint-disable-next-line
             this.scroll = new BScroll(this.$refs.listContent, {
               click: true
             })
@@ -117,13 +132,134 @@ export default{
           }
         })
       }
-      */
       return this.isShow
     }
+    */
 
+  },
+  methods: {
+    toggleList () {
+      this.isShow = !this.isShow
+    },
+    /* 'ele' for dropping movement not working
+    // * Display a hidden little ball
+    drop (startEl) {
+      // find the hidden ball
+      const ball = this.balls.find(ball => !ball.isShow)
+      // display it
+      if (ball) {
+        ball.isShow = true
+        ball.startEl = startEl
+        this.droppingBalls.push(ball)
+      }
+    },
+    // * 指定el的起始位置
+    beforeDrop (el) {
+      console.log('before()', Date.now())
+      // find the correspondant ball
+      const ball = this.droppingBalls.shift() // remove the first one
+
+      var offsetY = 0
+      var offsetX = 0
+      // calculate
+      const {left, top} = ball.startEl.getBoundingClientRect()
+      const elLeft = 32
+      const elBottom = 22
+      offsetX = left - elLeft
+      offsetY = -(window.innerHeight - top - elBottom)
+
+      // 指定transform样式
+      el.style.transform = `translate3d(0, ${offsetY}px, 0)`
+      el.children[0].style.transform = `translate3d(${offsetX}px, 0, 0)`
+
+      // save 'ball'
+      el.ball = ball
+    },
+    //  * 指定el结束位置
+    dropping (el) {
+      // force repaint // 强制重排重绘
+      // var temp = el.clientHeight
+      console.log('dropping() ', Date.now())
+      // 异步指定
+      this.$nextTick(() => {
+        // 指定transform样式
+        el.style.transform = 'translate3d(0, 0, 0)'
+        el.children[0].style.transform = 'translate3d(0, 0, 0)'
+      })
+    },
+    //  * 隐藏el
+    afterDrop (el) {
+      console.log('afterDrop()', Date.now())
+      // must delay the refresh state // 必须延迟更新状态
+      setTimeout(() => {
+        el.ball.isShow = false
+      }, 400)
+    },
+    */
+
+    /**
+    * vue.js 小球下落实现
+    */
+    drop(el) {
+      for (let i = 0; i < this.balls.length; i++) {
+        let ball = this.balls[i];
+        if (!ball.show) {
+          ball.show = true;
+          ball.el = el;
+          this.droppingBalls.push(ball);
+          console.log('ball in', ball);
+          return;
+        }
+      }
+    },
+    pay () {
+      if (this.totalPrice >= this.minPrice) {
+        alert(`Please pay : ${this.totalPrice + this.deliveryPrice}€`);
+      }
+    }
   },
   components: {
     cartcontrol
+  },
+  transitions: {
+    drop: {
+      beforeEnter(el) {
+        let count = this.balls.length;
+        while (count--) {
+          let ball = this.balls[count];
+          if (ball.show) {
+            // getBoundingClientRect()方法返回元素的大小及其相对于视口的位置
+            let rect = ball.el.getBoundingClientRect();
+            let x = rect.left - 32;
+            let y = -(window.innerHeight - rect.top - 22);
+            el.style.display = '';
+            el.style.webkitTransform = `translate3d(0,${y}px,0)`;
+            el.style.transform = `translate3d(0,${y}px,0)`;
+            let inner = el.getElementsByClassName('inner-hook')[0];
+            inner.style.webkitTransform = `translate3d(${x}px,0,0)`;
+            inner.style.transform = `translate3d(${x}px,0,0)`;
+          }
+        }
+      },
+      enter(el) {
+        // eslint-disable-next-line
+        let rf = el.offsetHeight;
+        this.$nextTick(() => {
+          el.style.webkitTransform = `translate3d(0,0,0)`;
+          el.style.transform = `translate3d(0,0,0)`;
+          let inner = el.getElementsByClassName('inner-hook')[0];
+          inner.style.webkitTransform = `translate3d(0,0,0)`;
+          inner.style.transform = `translate3d(0,0,0)`;
+        })
+      },
+      afterEnter(el) {
+        let ball = this.droppingBalls.shift();
+        if (ball) {
+          ball.show = false;
+          el.style.display = 'none';
+        }
+      }
+    }
   }
 };
 </script>
@@ -217,4 +353,20 @@ export default{
         &.enough
           background #00b43c
           color #fff
+  .ball-container
+    .ball
+      position fixed
+      left 32px
+      bottom 22px
+      z-index 200
+      &.drop-transition
+        transition all 0.4s
+        // the little ball
+        .inner
+          width 16px
+          height 16px
+          border-radius 50% // round ball
+          background rgb(0, 160, 220)
+          transition all 0.4
+
 </style>

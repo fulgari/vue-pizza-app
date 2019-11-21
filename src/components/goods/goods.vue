@@ -46,7 +46,7 @@
     :min-price="seller.minPrice"
     :update-food-count="updateFoodCount"
     :clear-cart="clearCart"
-    ></shopcart>
+    ref="shopcart"></shopcart>
   </div>
 </template>
 
@@ -151,7 +151,7 @@ export default {
         }
         // 通知shopcart组件对象启动一个小球的显示动画
         // notify the 'shopcart' to run the little ball animation
-        // this.$refs.shopcart.drop(event.target)
+        this.$refs.shopcart.drop(event.target)
       } else { // minus
         if (food.count) {
           food.count--;
