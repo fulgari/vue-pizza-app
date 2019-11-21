@@ -1,24 +1,41 @@
 <template>
   <div class="cartcontrol">
     <transition name="move">
-     <div class="cart-decrease icon-remove_circle_outline" v-show="food.count" @click.stop="updateFoodCount(food, false, $event)"></div>
+     <div class="cart-decrease icon-remove_circle_outline" v-show="food.count" @click.stop.prevent="decreaseCart"></div>
     </transition>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
     <!-- .stop阻止单击事件继续传播 -->
-    <div class="cart-add icon-add_circle" @click.stop="updateFoodCount(food, true, $event)"></div>
+    <div class="cart-add icon-add_circle" @click.stop="addCart($event)"></div>
   </div>
 
 </template>
 
 <script>
-
+import Vue from 'vue'
 export default{
   props: {
     food: Object,
     updateFoodCount: Function
   },
-  created() {
-    console.log(this.food.count);
+  methods: {
+    addCart (event) {
+      console.log(event.target)
+      // 避免PC发生两次点击事件
+      if (!event._constructed) {
+        return
+      }
+      if (!this.food.count) {
+        Vue.set(this.food, 'count', 0) // 用set添加属性，能够检测到，如直接 = 0 则不能被Vue监测
+      }
+      this.food.count++
+      this.$root.eventHub.$emit('cart.add', event.target)
+    },
+    decreaseCart () {
+      if (!event._constructed || !this.food.count) {
+        return
+      }
+      this.food.count--;
+    }
   }
 };
 </script>

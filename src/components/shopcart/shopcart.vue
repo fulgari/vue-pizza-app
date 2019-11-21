@@ -18,16 +18,17 @@
     </div>
 
     <div class="ball-container">
-      <div class="ball" v-for="ball in balls" :key="ball.index" v-show="ball.show" transition="drop">
-      <!-- <transition name="drop" v-for="(ball, index) in balls" :key="index"
-        @before-enter="beforeDrop"
-        @enter="dropping"
-        @after-enter="afterDrop"
-        v-bind:css="false"> -->
-        <div class="ball" v-show="ball.show">
-          <div class="inner inner-hook"></div>
-        </div>
-      </div>
+      <!-- <div class="ball" v-for="ball in balls" :key="ball.index" v-show="ball.show" transition="drop"> -->
+        <transition name="drop"
+          @before-enter="beforeDrop"
+          @enter="dropping"
+          @after-enter="afterDrop"
+          v-for="(ball, index) in balls" :key="index"
+          >
+          <div class="ball" v-show="ball.show">
+            <div class="inner inner-hook"></div>
+          </div>
+        </transition>
     </div>
 
     <transition name="fold">
@@ -42,7 +43,7 @@
               <span class="name">{{food.name}} * {{food.count}}</span>
               <div class="price"><span>{{food.price}}€ </span></div>
               <div class="cartcontrol-wrapper">
-                <cartcontrol :food="food" :update-food-count="updateFoodCount"></cartcontrol>
+                <cartcontrol :food="food"></cartcontrol>
               </div>
             </li>
           </ul>
@@ -81,6 +82,7 @@ export default{
     }
   },
   created() {
+    this.$root.eventHub.$on('cart.add', this.drop)
   },
   computed: {
     totalPrice() {
@@ -135,7 +137,6 @@ export default{
       return this.isShow
     }
     */
-
   },
   methods: {
     toggleList () {
@@ -153,9 +154,11 @@ export default{
         this.droppingBalls.push(ball)
       }
     },
+    */
     // * 指定el的起始位置
     beforeDrop (el) {
       console.log('before()', Date.now())
+      /* not working
       // find the correspondant ball
       const ball = this.droppingBalls.shift() // remove the first one
 
@@ -174,38 +177,66 @@ export default{
 
       // save 'ball'
       el.ball = ball
+      */
+      let count = this.balls.length
+      while (count--) {
+        let ball = this.balls[count]
+        if (ball.show) {
+          let rect = ball.el.getBoundingClientRect()
+          let x = rect.left - 32
+          let y = -(window.innerHeight - rect.top - 22)
+          el.style.display = ''
+          el.style.webkitTransform = `translate3d(0,${y}px,0)`
+          el.style.transform = `translate3d(0,${y}px,0)`
+          let inner = el.querySelector('.inner-hook')
+          // let inner = el.getElementsByClassName('inner-hook')[0]
+          console.log(rect, inner)
+          inner.style.webkitTransform = `translate3d(${x}px,0,0)`
+          inner.style.transform = `translate3d(${x}px,0,0)`
+        }
+      }
     },
     //  * 指定el结束位置
     dropping (el) {
       // force repaint // 强制重排重绘
-      // var temp = el.clientHeight
+      // eslint-disable-next-line
+      el.offsetWidth // 触发浏览器重绘，offsetWidth、offsetTop等方法都可以触发
       console.log('dropping() ', Date.now())
       // 异步指定
       this.$nextTick(() => {
         // 指定transform样式
         el.style.transform = 'translate3d(0, 0, 0)'
-        el.children[0].style.transform = 'translate3d(0, 0, 0)'
+        el.style.transform = 'translate3d(0, 0, 0)'
+        let inner = el.querySelector('.inner-hook')
+        inner.style.webkitTransform = 'translate3d(0,0,0)'
+        inner.style.transform = 'translate3d(0,0,0)'
       })
     },
     //  * 隐藏el
     afterDrop (el) {
+      /* not working
       console.log('afterDrop()', Date.now())
       // must delay the refresh state // 必须延迟更新状态
       setTimeout(() => {
         el.ball.isShow = false
       }, 400)
+      */
+      let ball = this.droppingBalls.shift()
+      if (ball) {
+        ball.show = false
+        el.style.display = 'none'
+      }
     },
-    */
-
     /**
     * vue.js 小球下落实现
     */
     drop(el) {
-      for (let i = 0; i < this.balls.length; i++) {
+      // 触发一次事件就会对所有小球进行遍历
+      for (let i = 0, l = this.balls.length; i < l; i++) {
         let ball = this.balls[i];
         if (!ball.show) {
           ball.show = true;
-          ball.el = el;
+          ball.el = el; // 设置小球的el属性为一个dom对象
           this.droppingBalls.push(ball);
           console.log('ball in', ball);
           return;
@@ -220,7 +251,8 @@ export default{
   },
   components: {
     cartcontrol
-  },
+  }
+  /*
   transitions: {
     drop: {
       beforeEnter(el) {
@@ -261,6 +293,7 @@ export default{
       }
     }
   }
+  */
 };
 </script>
 
@@ -359,14 +392,12 @@ export default{
       left 32px
       bottom 22px
       z-index 200
-      &.drop-transition
-        transition all 0.4s
-        // the little ball
+      &.drop-enter, &.drop-enter-active
+        transition all 0.5s cubic-bezier(0.49, -0.29, 0.75, 0.41)
         .inner
           width 16px
           height 16px
           border-radius 50% // round ball
           background rgb(0, 160, 220)
-          transition all 0.4
-
+          transition all 0.5s linear
 </style>

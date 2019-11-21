@@ -23,5 +23,8 @@ Vue.filter('date-string', function (value) {
 new Vue({
   el: '#app',
   router,
+  data: {
+    eventHub: new Vue()
+  },
   render: h => h(App)
 });

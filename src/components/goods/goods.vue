@@ -44,7 +44,6 @@
     :food-list="foodList"
     :delivery-price="seller.deliveryPrice"
     :min-price="seller.minPrice"
-    :update-food-count="updateFoodCount"
     :clear-cart="clearCart"
     ref="shopcart"></shopcart>
   </div>
@@ -58,6 +57,9 @@ import shopcart from '../shopcart/shopcart';
 import cartcontrol from '../cartcontrol/cartcontrol';
 
 const OK = 0;
+// for managing the events
+// eslint-disable-next-line
+const eventHub = new Vue()
 
 export default {
   props: {
@@ -151,7 +153,9 @@ export default {
         }
         // 通知shopcart组件对象启动一个小球的显示动画
         // notify the 'shopcart' to run the little ball animation
-        this.$refs.shopcart.drop(event.target)
+        // this.$refs.eventHub.$emit('cart.add', event.target)
+        console.log(event)
+        // this.$root.eventHub.$emit('cart.add', event.target)
       } else { // minus
         if (food.count) {
           food.count--;
