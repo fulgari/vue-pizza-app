@@ -393,11 +393,11 @@ export default{
       bottom 22px
       z-index 200
       &.drop-enter, &.drop-enter-active
-        transition all 0.5s cubic-bezier(0.49, -0.29, 0.75, 0.41)
+        transition all 0.4s cubic-bezier(0.49, -0.29, 0.75, 0.41)
         .inner
           width 16px
           height 16px
           border-radius 50% // round ball
           background rgb(0, 160, 220)
-          transition all 0.5s linear
+          transition all 0.4s linear // 最后花了三个小时找的bug，竟然是因为忘记在transition的时间后面加上秒（0.4 -> 0.4s）
 </style>
