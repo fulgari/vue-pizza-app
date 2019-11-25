@@ -14,7 +14,7 @@
         </div>
         <div class="content-right">
           <!-- :class="totalPrice>=minPrice?'enough':'not-enough'" , 换种表达-->
-          <div class="pay" :class="{'enough':totalPrice>=minPrice,'not-enough':totalPrice<minPrice}" @click="pay">{{payText}}</div>
+          <div class="pay" :class="{'enough':totalPrice>=minPrice,'not-enough':totalPrice<minPrice}" @click.stop.prevent="pay">{{payText}}</div>
         </div>
       </div>
 

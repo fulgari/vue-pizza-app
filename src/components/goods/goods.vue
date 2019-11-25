@@ -1,4 +1,5 @@
 <template>
+<div>
   <div class="goods">
     <div class="menu-wrapper" ref="menuWrapper">
       <ul>
@@ -16,7 +17,7 @@
         <li class="food-list food-list-hook" v-for="item in goods" :key="item.name">
           <h1 class="title">{{item.name}}</h1>
           <ul>
-            <li v-for="food in item.foods" :key="food.name" class="food-item">
+            <li v-for="food in item.foods" :key="food.name" class="food-item" @click="clickFood(food, $event)">
               <div class="icon">
                 <img width="57" height="57" :src="food.icon">
               </div>
@@ -47,6 +48,8 @@
     :clear-cart="clearCart"
     ref="shopcart"></shopcart>
   </div>
+  <food :food="selectFood" :update-food-count="updateFoodCount" ref="food"></food>
+</div>
 </template>
 
 <script>
@@ -55,6 +58,7 @@ import BScroll from 'better-scroll';
 import Vue from 'vue';
 import shopcart from '../shopcart/shopcart';
 import cartcontrol from '../cartcontrol/cartcontrol';
+import food from '../food/food';
 
 const OK = 0;
 // for managing the events
@@ -166,6 +170,15 @@ export default {
       this.foodList.forEach(food => {
         food.count = 0
       })
+    },
+    clickFood (food, event) {
+      if (!event._constructed) {
+        return
+      }
+      // 更新food
+      this.selectFood = food
+      // 显示food组件
+      this.$refs.food.show(true)
     }
   },
   computed: { // ‘计算’属性
@@ -190,7 +203,8 @@ export default {
   },
   components: {
     shopcart,
-    cartcontrol
+    cartcontrol,
+    food
   }
 };
 </script>
