@@ -60,13 +60,13 @@
           "description": "mozzarella, bacon & boulettes de bœuf",
           "sellCount": 229,
           "rating": 100,
-          "info": "一碗皮蛋瘦肉粥，总是我到粥店时的不二之选。香浓软滑，饱腹暖心，皮蛋的Q弹与瘦肉的滑嫩伴着粥香溢于满口，让人喝这样的一碗粥也觉得心满意足",
+          "info": "Nice great grill pizzas",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 0,
-              "text": "很喜欢的粥",
+              "text": "Quick, hot and yummy every time. Lots of topping, cooked like you request. Definitely my \"go to\" for good Pizza.",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -94,6 +94,7 @@
           "description": "mozzarella & merguez",
           "sellCount": 188,
           "rating": 96,
+          "info": "Pizzas with merguez, don't miss it!",
           "ratings": [
             {
               "username": "3******c",
@@ -117,7 +118,6 @@
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             }
           ],
-          "info": "",
           "icon": "https://www.dominos.fr/ManagedAssets/FR/product/PSME/FR_PSME_fr_hero_1850.png",
           "image": "https://www.dominos.fr/ManagedAssets/FR/product/PSME/FR_PSME_fr_hero_1850.png"
         },
@@ -128,13 +128,13 @@
           "description": "100% vegan",
           "sellCount": 101,
           "rating": 78,
-          "info": "",
+          "info": "For vegans and people who want love vegetables!",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 1,
-              "text": "不脆,不好吃",
+              "text": "Not good",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -162,20 +162,20 @@
           "description": "",
           "sellCount": 124,
           "rating": 85,
-          "info": "",
+          "info": "Great pancake for all!",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 1,
-              "text": "没啥味道",
+              "text": "Tasteless",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
               "username": "2******3",
               "rateTime": 1469271264000,
               "rateType": 1,
-              "text": "很一般啊",
+              "text": "So-so",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -196,13 +196,13 @@
           "description": "",
           "sellCount": 114,
           "rating": 91,
-          "info": "",
+          "info": "Awesome street food",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 1,
-              "text": "难吃不推荐",
+              "text": "Not recommended",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -236,13 +236,13 @@
           "description": "2 pizzas free choice, garlic Focaccia, soft drink",
           "sellCount": 17,
           "rating": 100,
-          "info": "",
+          "info": "Go share it!",
           "ratings": [
             {
               "username": "2******3",
               "rateTime": 1469271264000,
               "rateType": 0,
-              "text": "",
+              "text": "I love it!",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             }
           ],
@@ -257,18 +257,18 @@
       "foods": [
         {
           "name": "VC ORANGE JUICE",
-          "price": 4,
-          "oldPrice": 2,
+          "price": 2,
+          "oldPrice": 4,
           "description": "",
           "sellCount": 15,
           "rating": 100,
-          "info": "",
+          "info": "VC ORANGE JUICE",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 0,
-              "text": "还可以",
+              "text": "Not bad",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -295,13 +295,13 @@
           "description": "mozzarella, bacon & boulettes de bœuf",
           "sellCount": 229,
           "rating": 100,
-          "info": "一碗皮蛋瘦肉粥，总是我到粥店时的不二之选。香浓软滑，饱腹暖心，皮蛋的Q弹与瘦肉的滑嫩伴着粥香溢于满口，让人喝这样的一碗粥也觉得心满意足",
+          "info": "Nice great grill pizzas",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 0,
-              "text": "很喜欢的粥",
+              "text": "Quick, hot and yummy every time. Lots of topping, cooked like you request. Definitely my \"go to\" for good Pizza.",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -352,7 +352,7 @@
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             }
           ],
-          "info": "",
+          "info": "MERGUEZ PIZZAS",
           "icon": "https://www.dominos.fr/ManagedAssets/FR/product/PSME/FR_PSME_fr_hero_1850.png",
           "image": "https://www.dominos.fr/ManagedAssets/FR/product/PSME/FR_PSME_fr_hero_1850.png"
         },
@@ -363,13 +363,13 @@
           "description": "100% vegan",
           "sellCount": 101,
           "rating": 78,
-          "info": "",
+          "info": "For vegans and people who want love vegetables!",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 1,
-              "text": "不脆,不好吃",
+              "text": "Not good",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -403,7 +403,7 @@
           "description": "",
           "sellCount": 188,
           "rating": 96,
-          "info": "",
+          "info": "PASTA POMODORO",
           "ratings": [
             {
               "username": "3******c",
@@ -437,20 +437,20 @@
           "description": "creamy",
           "sellCount": 124,
           "rating": 85,
-          "info": "",
+          "info": "PARMESAN PASTA",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 1,
-              "text": "没啥味道",
+              "text": "Too salty",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
               "username": "2******3",
               "rateTime": 1469271264000,
               "rateType": 1,
-              "text": "很一般啊",
+              "text": "Just so so",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -477,13 +477,13 @@
           "description": "",
           "sellCount": 43,
           "rating": 92,
-          "info": "",
+          "info": "You have to try it!",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 0,
-              "text": "菜量还可以,味道还可以",
+              "text": "Great portion, so yummy",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -504,7 +504,7 @@
           "description": "",
           "sellCount": 29,
           "rating": 100,
-          "info": "",
+          "info": "French fries, don't you like it?",
           "ratings": [
             {
               "username": "3******c",
@@ -517,7 +517,7 @@
               "username": "2******3",
               "rateTime": 1469271264000,
               "rateType": 0,
-              "text": "",
+              "text": "Recommended",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             }
           ],
@@ -531,7 +531,7 @@
           "description": "",
           "sellCount": 15,
           "rating": 100,
-          "info": "",
+          "info": "UK famous dish",
           "ratings": [
             {
               "username": "3******c",
@@ -544,7 +544,7 @@
               "username": "2******3",
               "rateTime": 1469271264000,
               "rateType": 0,
-              "text": "",
+              "text": "OK",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             }
           ],
@@ -564,7 +564,7 @@
           "description": "",
           "sellCount": 84,
           "rating": 100,
-          "info": "",
+          "info": "Pickles from Asia",
           "ratings": [
             {
               "username": "3******c",
@@ -584,7 +584,7 @@
               "username": "3******b",
               "rateTime": 1469261964000,
               "rateType": 0,
-              "text": "",
+              "text": "Great",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             }
           ],
@@ -598,7 +598,7 @@
           "description": "",
           "sellCount": 28,
           "rating": 100,
-          "info": "",
+          "info": "Tradition sidedish",
           "ratings": [
             {
               "username": "3******c",
@@ -639,7 +639,7 @@
           "description": "",
           "sellCount": 1,
           "rating": "85",
-          "info": "",
+          "info": "This one is the Top!",
           "ratings": [],
           "icon": "http://fuss10.elemecdn.com/b/5f/b3b04c259d5ec9fa52e1856ee50dajpeg.jpeg?imageView2/1/w/114/h/114",
           "image": "http://fuss10.elemecdn.com/b/5f/b3b04c259d5ec9fa52e1856ee50dajpeg.jpeg?imageView2/1/w/750/h/750"
@@ -651,7 +651,7 @@
           "description": "",
           "sellCount": 7,
           "rating": 100,
-          "info": "",
+          "info": "Great choice and healthy!",
           "ratings": [
             {
               "username": "3******c",
@@ -685,13 +685,13 @@
           "description": "",
           "sellCount": 15,
           "rating": 100,
-          "info": "",
+          "info": "Famous dessert from New York!",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 0,
-              "text": "还可以",
+              "text": "Not bad",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -719,12 +719,13 @@
           "description": "",
           "sellCount": 229,
           "rating": 100,
+          "info":"Porridge for all!",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 0,
-              "text": "很喜欢的粥",
+              "text": "Definitely love it! So tasty!",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -752,13 +753,13 @@
           "description": "carrot & lentil",
           "sellCount": 91,
           "rating": 100,
-          "info": "",
+          "info": "Indian traditional soup",
           "ratings": [
             {
               "username": "3******c",
               "rateTime": 1469281964000,
               "rateType": 0,
-              "text": "",
+              "text": "Too spicy",
               "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png"
             },
             {
@@ -789,14 +790,11 @@
       "deliveryTime": 30,
       "score": 5,
       "rateType": 0,
-      "text": "不错,粥很好喝,我经常吃这一家,非常赞,以后也会常来吃,强烈推荐.",
+      "text": "Strongly recommended",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": [
-        "南瓜粥",
-        "皮蛋瘦肉粥",
-        "扁豆焖面",
-        "娃娃菜炖豆腐",
-        "牛肉馅饼"
+        "GREEN ONION PANCAKE",
+        "MERGUEZ PIZZAS"
       ]
     },
     {
@@ -805,10 +803,10 @@
       "deliveryTime": "",
       "score": 4,
       "rateType": 0,
-      "text": "服务态度不错",
+      "text": "Nice service",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": [
-        "扁豆焖面"
+        "TEXAS GRILL PIZZAS"
       ]
     },
     {
@@ -826,7 +824,7 @@
       "deliveryTime": 20,
       "score": 5,
       "rateType": 0,
-      "text": "良心店铺",
+      "text": "Really nice",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -846,7 +844,7 @@
       "deliveryTime": 70,
       "score": 1,
       "rateType": 1,
-      "text": "送货速度蜗牛一样",
+      "text": "Delivery for an hour!",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -856,7 +854,7 @@
       "deliveryTime": 30,
       "score": 5,
       "rateType": 0,
-      "text": "很喜欢的粥店",
+      "text": "I like this shop",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -866,7 +864,7 @@
       "deliveryTime": "",
       "score": 4,
       "rateType": 0,
-      "text": "量给的还可以",
+      "text": "Nice portion",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -886,10 +884,10 @@
       "deliveryTime": "",
       "score": 4,
       "rateType": 0,
-      "text": "孩子喜欢吃这家",
+      "text": "Kids like to come here",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": [
-        "南瓜粥"
+        "FISH"
       ]
     },
     {
@@ -898,7 +896,7 @@
       "deliveryTime": "",
       "score": 4,
       "rateType": 0,
-      "text": "粥挺好吃的",
+      "text": "Nice porridge",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -918,7 +916,7 @@
       "deliveryTime": 15,
       "score": 5,
       "rateType": 0,
-      "text": "送货速度很快",
+      "text": "Quick",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -938,7 +936,7 @@
       "deliveryTime": "",
       "score": 4,
       "rateType": 0,
-      "text": "下雨天给快递小哥点个赞",
+      "text": "Really awesome service",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -948,7 +946,7 @@
       "deliveryTime": "",
       "score": 4,
       "rateType": 0,
-      "text": "好",
+      "text": "Good",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -958,7 +956,7 @@
       "deliveryTime": "",
       "score": 5,
       "rateType": 0,
-      "text": "吃了还想再吃",
+      "text": "Can't help to come here!",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -968,7 +966,7 @@
       "deliveryTime": "",
       "score": 3,
       "rateType": 1,
-      "text": "发票开的不对",
+      "text": "Wrong fee",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -978,7 +976,7 @@
       "deliveryTime": 30,
       "score": 5,
       "rateType": 0,
-      "text": "好吃",
+      "text": "Yummy",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -988,7 +986,7 @@
       "deliveryTime": 40,
       "score": 5,
       "rateType": 0,
-      "text": "还不错吧",
+      "text": "Not bad generally",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },
@@ -1008,7 +1006,7 @@
       "deliveryTime": "",
       "score": 4,
       "rateType": 0,
-      "text": "很喜欢的粥",
+      "text": "Love the fries",
       "avatar": "http://static.galileo.xiaojukeji.com/static/tms/default_header.png",
       "recommend": []
     },

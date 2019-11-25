@@ -26,6 +26,40 @@
           <div class="buy" v-show="!food.count" @click="updateFoodCount(food, true, $event)">Add to cart</div>
         </div>
 
+        <split></split>
+
+        <div class="info">
+          <h1 class="title">Info</h1>
+          <p class="text">{{food.info}}</p>
+        </div>
+
+        <split></split>
+
+        <div class="rating">
+          <h1 class="title">Comments</h1>
+          <ratingselect :desc="desc" :only-content="onlyContent"
+                        :ratings="food.ratings"
+                        :select-type="selectType"
+                        @setSelectType="setSelectType"
+                        @switchOnlyContent="switchOnlyContent"></ratingselect>
+          <div class="rating-wrapper">
+            <ul>
+              <li class="rating-item border-1px" v-for="rating in filterRatings" :key="rating.index">
+                <div class="user">
+                  <span class="name">{{rating.username}}</span>
+                  <img width="12" height="12" class="avatar" :src="rating.avatar">
+                </div>
+                <div class="time">{{rating.rateTime}}</div>
+                <p class="text">
+                  <span :class="rating.rateType === 0 ? 'icon-thumb_up' : 'icon-thumb_down'"></span>
+                  {{rating.text}}
+                </p>
+              </li>
+            </ul>
+            <div class="no-rating" v-show="!food.ratings || food.ratings.length === 0">No comment</div>
+          </div>
+        </div>
+
       </div>
     </div>
   </transition>
@@ -36,6 +70,10 @@ import BScroll from 'better-scroll';
 import Vue from 'vue';
 // import shopcart from '../shopcart/shopcart';
 import cartcontrol from '../cartcontrol/cartcontrol';
+import split from '../split/split';
+import ratingselect from '../ratingselect/ratingselect';
+
+const ALL = 2 // represent all
 
 export default {
   props: {
@@ -45,8 +83,8 @@ export default {
   data () {
     return {
       isShow: false,
-      onlyContent: true
-      // selectType: ALL
+      onlyContent: true,
+      selectType: ALL
     };
   },
   created() {
@@ -70,13 +108,50 @@ export default {
           }
         })
       }
+    },
+    setSelectType (selectType) {
+      this.selectType = selectType
+
+      this.$nextTick(() => {
+        // 刷新列表的Scroll对象
+        this.scroll.refresh()
+      })
+    },
+    switchOnlyContent () {
+      this.onlyContent = !this.onlyContent
+
+      this.$nextTick(() => {
+        // 刷新列表的Scroll对象
+        this.scroll.refresh()
+      })
     }
   },
   computed: { // ‘计算’属性
+    // 过滤不同类型、内容
+    filterRatings () {
+      if (!this.food.ratings) {
+        return
+      }
+      const {selectType, onlyContent} = this
 
+      // selectType: 0, 1, 2
+      // onlyContent: true, false
+      return this.food.ratings.filter(rating => {
+        if (selectType === 2) {
+          // 如果onlyContent为false, 直接返回true, 否则还要看text有没有值
+          // 即如果没有勾上“只显示有内容”直接返回true，能够输出该rating，否则再判断是否含有文字内容
+          return !onlyContent || !!rating.text
+        } else {
+          // 既要比较type, 还要比较content
+          return selectType === rating.rateType && (!onlyContent || !!rating.text)
+        }
+      })
+    }
   },
   components: {
-    cartcontrol
+    cartcontrol,
+    split,
+    ratingselect
   }
 };
 </script>
@@ -168,5 +243,65 @@ export default {
         transition all 0.2s
       &.fade-enter, &.fade-leave
         opacity 0
+  .info
+    padding 18px
+    .title
+      line-height 14px
+      margin-bottom 6px
+      font-size 14px
+      color rgb(7, 17, 27)
+    .text
+      line-height 24px
+      padding 0 8px
+      font-size 12px
+      color rgb(77, 85, 93)
+  .rating
+    padding-top 18px
+    .title
+      line-height 14px
+      margin-left 18px
+      font-size 14px
+      color rgb(7, 17, 27)
+    .rating-wrapper
+      padding 0 18px
+      .rating-item
+        position relative
+        padding 16px 0
+        border-1px(rgba(7, 17, 27, 0.1))
+        .user
+          position absolute
+          right 0
+          top 16px
+          line-height 12px
+          font-size 0
+          .name
+            display inline-block
+            margin-right 6px
+            vertical-align top
+            font-size 10px
+            color rgb(147, 153, 159)
+          .avatar
+            border-radius 50%
+        .time
+          margin-bottom 6px
+          line-height 12px
+          font-size 10px
+          color rgb(147, 153, 159)
+        .text
+          line-height 16px
+          font-size 12px
+          color rgb(7, 17, 27)
+          .icon-thumb_up, .icon-thumb_down
+            margin-right 4px
+            line-height 16px
+            font-size 12px
+          .icon-thumb_up
+            color rgb(0, 160, 220)
+          .icon-thumb_down
+            color rgb(147, 153, 159)
+      .no-rating
+        padding 16px 0
+        font-size 12px
+        color rgb(147, 153, 159)
 
 </style>
