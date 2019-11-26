@@ -58,7 +58,6 @@ export default{
           const result = response.data;
           if (result.code === ERR_OK) {
             this.seller = result.data;
-            this.seller.score = 3.6;
           }
         })
         .catch(error => {

@@ -50,7 +50,7 @@ export default {
       height 10px
       background-repeat no-repeat
       background-size 10px 10px
-      margin-right 3px
+      margin-right 5px
       &:last-child
         margin-right 0
     .on
@@ -66,7 +66,7 @@ export default {
       height 15px
       background-repeat no-repeat
       background-size 15px 15px
-      margin-right 4px
+      margin-right 7px
       &:last-child
         margin-right 0
     .on
@@ -82,7 +82,7 @@ export default {
       height 20px
       background-repeat no-repeat
       background-size 20px 20px
-      margin-right 5px
+      margin-right 9px
       &:last-child
         margin-right 0
     .on

@@ -1,6 +1,5 @@
 <template>
-  <transition>
-
+  <transition name="move">
     <div class="food" v-show="isShow" ref="food">
       <div class="food-content">
         <div class="image-header">
@@ -23,7 +22,7 @@
           <div class="cartcontrol-wrapper">
             <cartcontrol :food="food" :update-food-count="updateFoodCount"></cartcontrol>
           </div>
-          <div class="buy" v-show="!food.count" @click="updateFoodCount(food, true, $event)">Add to cart</div>
+          <div class="buy" v-show="!food.count" @click.stop.prevent="updateFoodCount(food, true, $event)">Add to cart</div>
         </div>
 
         <split></split>
@@ -90,8 +89,8 @@ export default {
   created() {
     this.desc = {
       all: 'All',
-      positive: 'positive',
-      negative: 'negative'
+      positive: 'Positive',
+      negative: 'Negative'
     }
   },
   methods: {
@@ -171,7 +170,7 @@ export default {
     transition all .2s linear
   &.move-enter, &.move-leave-active
     opacity 0
-    transition translate3d(100%, 0, 0)
+    transform translate3d(100%, 0, 0)
   .image-header
     position relative
     width 100%

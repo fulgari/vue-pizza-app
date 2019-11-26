@@ -5,7 +5,7 @@
     </transition>
     <div class="cart-count" v-show="food.count>0">{{food.count}}</div>
     <!-- .stop阻止单击事件继续传播 -->
-    <div class="cart-add icon-add_circle" @click.stop="addCart($event)"></div>
+    <div class="cart-add icon-add_circle" @click.stop.prevent="addCart($event)"></div>
   </div>
 
 </template>
