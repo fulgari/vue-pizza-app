@@ -295,12 +295,12 @@ export default{
             padding 0 12px
             font-size 12px
             line-height 24px
+            font-weight 200
     .detail-close
-      position relative
       text-align center
       font-size 32px
       height 32px
-      margin -64px 0 0 auto
+      margin-top -160px
       clear both
       color rgba(255,255,255,0.5)
 </style>
